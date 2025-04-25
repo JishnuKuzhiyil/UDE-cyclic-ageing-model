@@ -1,4 +1,10 @@
 
+#Comment out the following lines to instantiate the project environment
+
+# using Pkg #Package manager for Julia
+# Pkg.activate(".") # Activate the project environment
+# Pkg.instantiate() # install packages if not already installed
+
 
 #Import required packages
 using LinearAlgebra, DifferentialEquations, Plots, SparseArrays

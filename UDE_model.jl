@@ -1,3 +1,22 @@
+"""
+
+This code runs the UDE based cyclic ageing model. Set condition index to the desired condition to simulate.
+The code simulates corresponding cyclic ageing experiment and plots the results.
+
+Model details: 
+- Single particle model (SPM) with thermal dynamics
+- Degradation mechsnisms include (i) SEI growth, (ii)pore blockage, (iii) lithium plating, (iv) particle cracking and SEI on cracks, (v) mechsnical damage
+- Physics-based goverining equations are used for degradation mechsnisms (i)-(iv)
+- Neural networks are used to model the mechanical damage (v) and its effect on the pore blockage
+
+Code is writtern by Jishnu Ayyangatu Kuzhiyil, PhD student, University of Warwick, UK
+
+"""
+#Comment out the following lines to instantiate the project environment
+
+# using Pkg #Package manager for Julia
+# Pkg.activate(".") # Activate the project environment
+# Pkg.instantiate() # install packages if not already installed
 
 
 #Import required packages
@@ -23,7 +42,7 @@ condition_names = [
      "0p3C_1C_85_0_45degC",      "0p3C_0p3C_100_0_10degC", "0p3C_1C_100_0_10degC", 
 ]
 
-Condition_index =1   #Index of the condition to simulate
+Condition_index =1   #Index of the condition to simulate, choose 1-21
 
 #Define the neural networks and load its optimal parameters
 rng = StableRNG(1111) #random number generator, for neural network initialisation (but it is replaced with optimal weights after that)
