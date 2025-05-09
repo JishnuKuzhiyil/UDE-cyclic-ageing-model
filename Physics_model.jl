@@ -46,7 +46,7 @@ Ea_β_pore = 26584.3/8.314
 
 # LiP Model parameters
 K_LiP_ref=1.03e-10   
-Ea_K_LiP = 7949.0/8.314
+Ea_K_LiP = 1590.0/8.314
 
 #Cracking Parameters
 k_cr = 3.77e-21
@@ -491,18 +491,23 @@ del_fs = 4
 
 P_capacity = plot(x, Capacity, m=:circle, mc=:orange, ms=5, legend=false, lw=3, xlabel="Cycle number", ylabel="Capacity [Ah]", framestyle=:box, tickfontsize=fs, labelfontsize=fs+del_fs, size=(400,400), title=title_cond)
 plot!(P_capacity,cycles_capacity,Capacity_mean_data,m=:square,ms=5,ribbon=Capacity_std_data,fillalpha=0.2,label="Experiment",mc=:black,color=:black,fillcolor=:black,dpi=300)
+plot!(P_capacity,ylim=(3.0,4.9),yticks = 3.0:0.5:4.9)
 
 P_resistance = plot(x, 1e3 .* sim_state.Resistance, m=:circle, mc=:orange, ms=5, legend=false, lw=3, xlabel="Cycle number", ylabel="Resistance [mΩ]", framestyle=:box, tickfontsize=fs, labelfontsize=fs+del_fs, size=(400,400), title=title_cond)
 plot!(P_resistance,cycles_res,Resistance_mean_data,m=:square,ms=5,ribbon=Resistance_std_data,fillalpha=0.4,fillcolor=:black,label="Experiment",mc=:black,color=:black,dpi=300)
+plot!(P_resistance,ylim=(24,44),yticks = 24:5:44)
 
 p_LAM_cathode = plot(x, 100 .* LAM_cathode, m=:circle, mc=:orange, ms=5, legend=false, lw=3, xlabel="Cycle number", ylabel="LAM PE [%]", framestyle=:box, tickfontsize=fs, labelfontsize=fs+del_fs, size=(400,400), title=title_cond)
-scatter!(p_LAM_cathode,cycles_DM,Cathode_lam,yerr=Cathode_Cap_std,fillalpha=0.4,fillcolor=:black,label="Experiment",m=:square,ms=7,mc=:black,dpi=300)
+ scatter!(p_LAM_cathode,cycles_DM,Cathode_lam,yerr=Cathode_Cap_std,fillalpha=0.4,fillcolor=:black,label="Experiment",m=:square,ms=7,mc=:black,dpi=300)
+ plot!(p_LAM_cathode,ylim=(0,33),yticks = 0:10:30)
 
 p_LAM_anode = plot(x, 100 .* LAM_anode, m=:circle, mc=:orange, ms=5, legend=false, lw=3, xlabel="Cycle number", ylabel="LAM NE [%]", framestyle=:box, tickfontsize=fs, labelfontsize=fs+del_fs, size=(400,400), title=title_cond)
-scatter!(p_LAM_anode,cycles_DM,Anode_lam,yerr=Anode_Cap_std,fillalpha=0.4,fillcolor=:black,label="Experiment",m=:square,ms=7,color=:black,dpi=300)
+ scatter!(p_LAM_anode,cycles_DM,Anode_lam,yerr=Anode_Cap_std,fillalpha=0.4,fillcolor=:black,label="Experiment",m=:square,ms=7,color=:black,dpi=300)
+ plot!(p_LAM_anode,ylim=(0,33),yticks = 0:10:30)
 
-p_LLI = plot(x, 100.0 .- 100.0 .* sim_state.Total_lithium./sim_state.Total_lithium[1], m=:circle, mc=:orange, ms=5, legend=false, lw=3, xlabel="Cycle number", ylabel="LLI [%]", framestyle=:box, tickfontsize=fs, labelfontsize=fs+del_fs, size=(400,400), title=title_cond)
+ p_LLI = plot(x, 100.0 .- 100.0 .* sim_state.Total_lithium./sim_state.Total_lithium[1], m=:circle, mc=:orange, ms=5, legend=false, lw=3, xlabel="Cycle number", ylabel="LLI [%]", framestyle=:box, tickfontsize=fs, labelfontsize=fs+del_fs, size=(400,400), title=title_cond)
 scatter!(p_LLI,cycles_DM,100.0 .- 100.0 .* Total_lithium./Total_lithium[1],yerr=100.0 .*Total_lithium_std./Total_lithium[1],fillalpha=0.4,fillcolor=:black,label="Experiment",m=:square,ms=7,color=:black,dpi=300)
+plot!(p_LLI,ylim=(0,40),yticks = 0:10:40)
 
 P = plot(P_capacity,P_resistance,p_LAM_cathode,p_LAM_anode,p_LLI,layout=(3,2),size=(800,800))
 
