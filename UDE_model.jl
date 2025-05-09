@@ -77,15 +77,15 @@ Ea_β_pore = 26584.3/8.314
 
 # LiP Model parameters
 K_LiP_ref=1.03e-10   
-Ea_K_LiP = 7949.0/8.314
+Ea_K_LiP = 1590.0/8.314
 
 #Cracking Parameters
 k_cr = 3.77e-21
 m_cr = 2.2
 
 #Stress based LAM parameters
-Ea_NN_pos=3125.0
-Ea_NN_neg=1250.0 
+Ea_NN_pos=2187.0
+Ea_NN_neg=1050.0
 
 
 #Define experiment
@@ -400,7 +400,7 @@ function affect!(integrator)
         δ_LIP_50per = Soln_50per[14]
         T_50per = 298.15
         I = integrator.p[3][Step_nu].I_val
-        Res=SPM_Model_Aux.Resistance_calc(Cn_surf_50per, Cp_surf_50per, bn_50per, bp_50per, δ_SEI_50per,δ_LIP_50per, I, T_50per)
+        Res=SPM_Model_Aux.Resistance_calc(Cn_surf_50per, Cp_surf_50per, bn_50per, bp_50per, δ_SEI_50per,δ_LIP_50per, 2.5, T_50per)
         Q_mes = (t_step_end - t_step_start)/3600.0 * (5/3)
 
         Cn_avg = SPM_Model_Aux.FVM_vol_avg(integrator.u[1:6])
