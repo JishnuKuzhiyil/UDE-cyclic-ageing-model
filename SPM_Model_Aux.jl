@@ -73,7 +73,7 @@ module SPM_Model_Aux
         j_p_0 = Para_set.Positive_exchange_current_density(c_p_surf, T)
         Φ_reaction = (2 * R * T / F )* (asinh(j_p / j_p_0) - asinh(j_n / j_n_0)) 
 
-        R0 =0.00022
+        R0 =0.00122
         R0_SEI = L_SEI/(Para_set.A*Para_set.Ln*bn*κ_SEI)
         
         V = OCP - I * R0 - I * R0_SEI + Φ_reaction 
@@ -93,7 +93,7 @@ module SPM_Model_Aux
         j_p_0 = Para_set.Positive_exchange_current_density(c_p_surf, T)
         Φ_reaction = (2 * R * T / F )* (asinh(j_p / j_p_0) - asinh(j_n / j_n_0)) 
 
-        R0 = 0.00022
+        R0 = 0.00122
         R0_SEI = L_SEI/(Para_set.A*Para_set.Ln*bn*κ_SEI)  
 
         return  R0 + R0_SEI + abs(Φ_reaction/I)
